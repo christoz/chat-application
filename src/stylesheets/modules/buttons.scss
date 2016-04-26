@@ -1,0 +1,7 @@
+.btn {
+   @include newButton;
+   background: #243c6d;
+   color: #fff;
+   font-size: 1rem;
+   padding: 0 1rem;
+}

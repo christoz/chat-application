@@ -25062,11 +25062,55 @@
 	
 	var Carousel = _react2.default.createClass({
 	   displayName: 'Carousel',
+	   getInitialState: function getInitialState() {
+	      return {
+	         directionClass: null
+	      };
+	   },
+	   bindEvents: function bindEvents() {},
+	   componentDidMount: function componentDidMount() {
+	      this.bindEvents();
+	   },
+	   left: function left() {},
+	   move: function move(direction) {},
 	   render: function render() {
 	      return _react2.default.createElement(
 	         'div',
 	         { className: this.props.active === true ? 'carousel is-active' : 'carousel' },
-	         'Here goes the Carousel'
+	         _react2.default.createElement(
+	            'div',
+	            { className: 'carousel-track', style: this.state.directionClass },
+	            _react2.default.createElement(
+	               'div',
+	               { className: 'item' },
+	               _react2.default.createElement('img', { src: 'http://lorempixel.com/640/480/sports/1/' })
+	            ),
+	            _react2.default.createElement(
+	               'div',
+	               { className: 'item' },
+	               _react2.default.createElement('img', { src: 'http://lorempixel.com/640/480/sports/2/' })
+	            ),
+	            _react2.default.createElement(
+	               'div',
+	               { className: 'item' },
+	               _react2.default.createElement('img', { src: 'http://lorempixel.com/640/480/sports/3/' })
+	            ),
+	            _react2.default.createElement(
+	               'div',
+	               { className: 'item' },
+	               _react2.default.createElement('img', { src: 'http://lorempixel.com/640/480/sports/4/' })
+	            )
+	         ),
+	         _react2.default.createElement(
+	            'button',
+	            { onClick: this.move.bind(this, 'left'), className: 'btn arrow arrow-left' },
+	            _react2.default.createElement('i', { className: 'fa fa-chevron-left' })
+	         ),
+	         _react2.default.createElement(
+	            'button',
+	            { onClick: this.move.bind(this, 'right'), className: 'btn arrow arrow-right' },
+	            _react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+	         )
 	      );
 	   }
 	});

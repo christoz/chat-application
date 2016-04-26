@@ -2,7 +2,9 @@
 .l-app {
 	width: 100%;
 	height: 100%;
-
+	.app-container {
+		height: 100%;
+	}
    .nav {
 		position: fixed;
 		width:100%;
@@ -17,5 +19,34 @@
 		position: relative;
 		top: 44px;
 		padding-bottom: 88px;
+		height: calc(100%);
+	}
+	.carousel {
+		&-track {
+			@include flexbox();
+			overflow-x: hidden;
+			height: 100%;
+		}
+		.item {
+			@include flex(1 0 100%);
+			text-align: center;
+			img {
+				max-width: 100%;
+			}
+		}
+		.arrow {
+			position: absolute;
+			-webkit-transform: translateY(-50%);
+			-ms-transform: translateY(-50%);
+			-o-transform: translateY(-50%);
+			transform: translateY(-50%);
+			top: 50%;
+			&-left {
+				left:20px;
+			}
+			&-right {
+				right:20px;
+			}
+		}
 	}
 }
