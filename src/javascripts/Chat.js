@@ -90,7 +90,7 @@ var Chat = React.createClass({
    },
    render : function(){
       return(
-         <div>
+         <div className={(this.props.active === true ? 'chat is-active' : 'chat')}>
             <ChatMessages messages={this.state.messages} />
             <ChatForm onMsgSubmit={this.handleMsgSubmit} />
          </div>

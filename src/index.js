@@ -5,11 +5,11 @@ import EventEmitter2 from 'eventemitter2';
 // import components
 import Menu from './javascripts/Menu.js';
 import Chat from './javascripts/Chat.js';
-
+import Carousel from './javascripts/Carousel.js';
 
 window.EVT = new EventEmitter2();
 
-let pages = [
+var pages = [
 	{
 		page_name : 'Chat',
 		icon : 'fa fa-comment'
@@ -25,10 +25,17 @@ let pages = [
 ];
 
 const Panes = React.createClass({
+	getInitialState(){
+		return {
+			currentPane : this.props.paneIndex
+		}
+	},
 	render(){
+		//console.log(this.state.currentPane)
 		return (
 			<div className="app-panes">
-				<Chat />
+				<Chat active={0 === this.props.paneIndex} />
+				<Carousel active={1 === this.props.paneIndex} />
 			</div>
 		)
 
@@ -37,22 +44,23 @@ const Panes = React.createClass({
 const App = React.createClass({
    getInitialState(){
       return {
-         socket : null
+         socket : null,
+			activePane : 0
       }
    },
    componentDidMount(){
-      let that = this;
-      /**
-      socket.on('connect', function(that){
 
-      });
-      */
    },
+	setPane(pane){
+		this.setState({
+			activePane : pane
+		});
+	},
 	render() {
 		return (
 			<div className="app-container">
-				<Menu list={pages} />
-				<Panes />
+				<Menu list={pages} setPane={this.setPane}/>
+				<Panes paneIndex={this.state.activePane} />
 			</div>
 		)
 	}

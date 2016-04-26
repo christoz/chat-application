@@ -69,12 +69,16 @@
 	
 	var _Chat2 = _interopRequireDefault(_Chat);
 	
+	var _Carousel = __webpack_require__(/*! ./javascripts/Carousel.js */ 164);
+	
+	var _Carousel2 = _interopRequireDefault(_Carousel);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	window.EVT = new _eventemitter2.default();
 	
 	// import components
 	
-	
-	window.EVT = new _eventemitter2.default();
 	
 	var pages = [{
 		page_name: 'Chat',
@@ -89,11 +93,18 @@
 	
 	var Panes = _react2.default.createClass({
 		displayName: 'Panes',
+		getInitialState: function getInitialState() {
+			return {
+				currentPane: this.props.paneIndex
+			};
+		},
 		render: function render() {
+			//console.log(this.state.currentPane)
 			return _react2.default.createElement(
 				'div',
 				{ className: 'app-panes' },
-				_react2.default.createElement(_Chat2.default, null)
+				_react2.default.createElement(_Chat2.default, { active: 0 === this.props.paneIndex }),
+				_react2.default.createElement(_Carousel2.default, { active: 1 === this.props.paneIndex })
 			);
 		}
 	});
@@ -101,22 +112,22 @@
 		displayName: 'App',
 		getInitialState: function getInitialState() {
 			return {
-				socket: null
+				socket: null,
+				activePane: 0
 			};
 		},
-		componentDidMount: function componentDidMount() {
-			var that = this;
-			/**
-	  socket.on('connect', function(that){
-	   });
-	  */
+		componentDidMount: function componentDidMount() {},
+		setPane: function setPane(pane) {
+			this.setState({
+				activePane: pane
+			});
 		},
 		render: function render() {
 			return _react2.default.createElement(
 				'div',
 				{ className: 'app-container' },
-				_react2.default.createElement(_Menu2.default, { list: pages }),
-				_react2.default.createElement(Panes, null)
+				_react2.default.createElement(_Menu2.default, { list: pages, setPane: this.setPane }),
+				_react2.default.createElement(Panes, { paneIndex: this.state.activePane })
 			);
 		}
 	});
@@ -20958,11 +20969,11 @@
 			};
 		},
 		clickHandler: function clickHandler(index) {
+			this.props.setPane(index);
 			this.setState({
 				active_tab: index
 			});
-	
-			EVT.emit('foo', this.state.active_tab);
+			//EVT.emit('foo', this.state.active_tab);
 		},
 		render: function render() {
 			var that = this;
@@ -21013,9 +21024,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	/* Socket.io Communication */
-	
 	//var React = require('React');
+	
+	
 	var ChatMsg = _react2.default.createClass({
 	   displayName: 'ChatMsg',
 	   render: function render() {
@@ -21102,32 +21113,25 @@
 	      socket.on('message', this.msgReceive);
 	   },
 	   msgReceive: function msgReceive(msg) {
-	      console.log(msg);
-	
 	      var messages = this.state.messages;
-	
 	      messages.push(msg);
-	
 	      this.setState({
 	         messages: messages
 	      });
 	   },
 	   handleMsgSubmit: function handleMsgSubmit(msg) {
-	      console.log(msg);
-	
 	      var messages = this.state.messages;
 	      messages.push(msg);
 	      this.setState({
 	         messages: messages
 	      });
-	
 	      socket.emit('message', msg);
 	   },
 	
 	   render: function render() {
 	      return _react2.default.createElement(
 	         'div',
-	         null,
+	         { className: this.props.active === true ? 'chat is-active' : 'chat' },
 	         _react2.default.createElement(ChatMessages, { messages: this.state.messages }),
 	         _react2.default.createElement(ChatForm, { onMsgSubmit: this.handleMsgSubmit })
 	      );
@@ -25036,6 +25040,38 @@
 		return module;
 	}
 
+
+/***/ },
+/* 164 */
+/*!*************************************!*\
+  !*** ./src/javascripts/Carousel.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Carousel = _react2.default.createClass({
+	   displayName: 'Carousel',
+	   render: function render() {
+	      return _react2.default.createElement(
+	         'div',
+	         { className: this.props.active === true ? 'carousel is-active' : 'carousel' },
+	         'Here goes the Carousel'
+	      );
+	   }
+	});
+	
+	exports.default = Carousel;
 
 /***/ }
 /******/ ]);

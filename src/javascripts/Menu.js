@@ -8,11 +8,11 @@ const Menu = React.createClass({
 	   };
 	},
 	clickHandler(index){
+		this.props.setPane(index);
 		this.setState({
 			active_tab : index
 		});
-
-		EVT.emit('foo', this.state.active_tab);
+		//EVT.emit('foo', this.state.active_tab);
 	},
 	render(){
 		var that = this;
@@ -22,7 +22,6 @@ const Menu = React.createClass({
 			return (
             <MenuItem key={'page'+i} active={(state.active_tab === i ? 'true' : 'false')} icon={item.icon} pageName={item.page_name} onClick={that.clickHandler.bind(that, i)} />
          )
-
 		});
 
 		return (
