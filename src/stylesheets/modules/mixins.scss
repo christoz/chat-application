@@ -1,0 +1,14 @@
+// mixins
+@mixin newButton() {
+   background-color: transparent;
+   border: none;
+   cursor: pointer;
+   display: inline-block;
+   height: 44px;
+   line-height: 44px;
+   outline: 0;
+   padding: 0 2rem;
+   text-transform: uppercase;
+   vertical-align: middle;
+   -webkit-tap-highlight-color: transparent;
+}

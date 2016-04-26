@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEM,oBAAa;EACV,UAAU,EAAE,KAAK",
+"sources": ["../../src/stylesheets/modules/chat.scss"],
+"names": [],
+"file": "chat.css"
+}

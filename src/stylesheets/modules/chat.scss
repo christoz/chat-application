@@ -1,0 +1,39 @@
+.chat {
+   &-msg {
+      &.text-right {
+         text-align: right;
+      }
+   }
+   &-form {
+      background-color: #f6f7f8;
+      border-top: 1px solid #cdcecf;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 5px;
+      input {
+         border: 0;
+         padding: 10px;
+         width: 90%;
+         margin-right: .5%;
+         vertical-align: middle;
+         height: 43px;
+         border-radius: 3px;
+      }
+   }
+   &-submit {
+      width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px;
+      background: #5890ff;
+      border-radius: 3px;
+      color: #fff;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 12px 20px 10px 20px;
+   }
+}
+
+#messages { list-style-type: none; margin: 0; padding: 0; }
+#messages li { padding: 5px 10px; }
+#messages li:nth-child(odd) { background: #eee; }
